@@ -1,0 +1,55 @@
+package com.example.tests;
+
+import com.thoughtworks.selenium.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.regex.Pattern;
+
+public class selenium_remote {
+	private Selenium selenium;
+
+	@Before
+	public void setUp() throws Exception {
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://lexbz99109.lexington.ibm.com:8081/jpetstore/");
+		selenium.start();
+	}
+
+	@Test
+	public void testSelenium_remote() throws Exception {
+		selenium.open("/jpetstore/");
+		selenium.click("link=Enter the Store");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Sign In");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("name=signon");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("//div[@id='QuickLinks']/a[2]/img");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=K9-BD-01");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Add to Cart");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Proceed to Checkout");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("name=newOrder");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Confirm");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Return to Main Menu");
+		selenium.waitForPageToLoad("30000");
+		selenium.type("name=keyword", "dog");
+		selenium.click("name=searchProducts");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Return to Main Menu");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Sign Out");
+		selenium.waitForPageToLoad("30000");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		selenium.stop();
+	}
+}
